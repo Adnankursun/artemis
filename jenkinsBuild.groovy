@@ -51,8 +51,13 @@ def slavePodTemplate = """
                         sh "docker login --username ${username} --password ${password}"
                     }
                 }
-                stage("Docker Push") {
-                    sh "docker push adnankursun/artemis:${branch.replace('version/', 'v')}"
+
+                stage("Trigger Deploy") {
+                  build 'artemis-deploy', 
+                  parameters: [
+                      [$class: 'BooleanParameterValue', name: 'terraformApply',     value: true],
+                      [$class: 'StringParameterValue',  name: 'environment',         value: "dev"]
+                      ]
                 }
 
                 stage("Trigger Deploy") {
