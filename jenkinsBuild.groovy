@@ -50,7 +50,8 @@ def slavePodTemplate = """
     } else if (branch.contains('qa-feature')) {
     environment = "qa"
     }
-        
+
+    println("${environment}") 
      
     podTemplate(name: k8slabel, label: k8slabel, yaml: slavePodTemplate, showRawYaml: false) {
       node(k8slabel) {
@@ -75,8 +76,8 @@ def slavePodTemplate = """
                 stage("Trigger Deploy") {
                   build job: 'artemis-deploy', 
                   parameters: [
-                      [$class: 'BooleanParameterValue', name: 'terraformApply',     value: true],
-                      [$class: 'StringParameterValue',  name: 'environment',         value: "${environment}"]
+                      [$class: 'BooleanParameterValue', name: 'terraformApply', value: true],
+                      [$class: 'StringParameterValue',  name: 'environment', value: "${environment}"],
                       [$class: 'StringParameterValue',  name: 'docker_image', value: "${docker_image}"]
                       ]
                 }
