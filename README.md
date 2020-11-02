@@ -13,4 +13,5 @@ after clone the repository, run the following command
  terraform apply -var-file task.tfvars
 
  Requirements
+
  terraform 0.11.14
