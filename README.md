@@ -15,14 +15,15 @@ To be able use that code for different environments, you need to change the tfva
 1. Clone the repository from GitHub
 
 ```
- cd cisco-task/task_files
+cd cisco-task/task_files
 ```
 
 
 2. Provision the infrastructure (and deploy the app on instance start)
 ```
-  terraform init ; terraform apply -var-file task.tfvars --auto-approve
-
-To tear down the infrastructure, run
- terraform init ; terraform destroy -var-file task.tfvars --auto-approve
+terraform init ; terraform apply -var-file task.tfvars --auto-approve
+```
+3. To tear down the infrastructure, run
+```
+terraform init ; terraform destroy -var-file task.tfvars --auto-approve
 ```
